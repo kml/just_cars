@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class OffersControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @offer = offers(:one)
+    @offer.description.body = "MyText"
+    sign_in users(:bob)
   end
 
   test "should get index" do

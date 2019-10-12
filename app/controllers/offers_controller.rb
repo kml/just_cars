@@ -4,7 +4,27 @@ class OffersController < ApplicationController
 
   # GET /offers
   def index
-    @offers = Offer.all.page(params[:page] || 1)
+    @offer_params = OffersParams.new(params.permit(OffersParams.attributes_names + [:format]))
+
+    respond_to do |format|
+      format.html do
+        if @offer_params.invalid?
+          @offers = Offer.all.page(params[:page] || 1)
+        else
+          @offers = OffersSearcher.new(@offer_params).call
+        end
+
+        render :index
+      end
+
+      format.json do
+        if @offer_params.invalid?
+          render json: offer_params.errors, status: :unprocessable_entity
+        else
+          render json: OffersSearcher.new(@offer_params).call, each_serializer: OfferSerializer
+        end
+      end
+    end
   end
 
   # GET /offers/1

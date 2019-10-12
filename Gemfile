@@ -22,6 +22,8 @@ gem 'turbolinks', '~> 5'
 gem 'pry-rails'
 gem 'devise'
 gem 'kaminari'
+gem 'virtus'
+gem 'active_model_serializers'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -42,6 +44,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'factory_bot_rails'
 end
 
 group :test do
