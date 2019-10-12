@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Offers</h1>
 
 <table>
@@ -23,12 +21,13 @@
             <%= image_tag 'https://via.placeholder.com/200' %>
           <% end %>
         </td>
-        <td><%= offer.title %></td>
+        <td><%= link_to offer.title, offer %></td>
         <td><%= offer.price %></td>
         <td><%= offer.description %></td>
-        <td><%= link_to 'Show', offer %></td>
-        <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
-        <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
+          <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
