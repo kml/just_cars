@@ -13,7 +13,17 @@ class OfferSerializer < ActiveModel::Serializer
     return unless object.photo.attached?
 
     {
-      path: Rails.application.routes.url_helpers.rails_blob_path(object.photo, only_path: true)
+      path: rails_blob_path(object.photo)
     }
+  end
+
+  private
+
+  def h
+    Rails.application.routes.url_helpers
+  end
+
+  def rails_blob_path(blob)
+    h.rails_blob_path(blob, only_path: true)
   end
 end
