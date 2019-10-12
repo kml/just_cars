@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>Photo</th>
       <th>Title</th>
-      <th>Description</th>
       <th>Price</th>
+      <th>Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +16,16 @@
   <tbody>
     <% @offers.each do |offer| %>
       <tr>
+        <td>
+          <% if offer.photo.attached? %>
+            <%= image_tag offer.photo.variant(resize_to_limit: [200, 200]) %>
+          <% else %>
+            <%= image_tag 'https://via.placeholder.com/200' %>
+          <% end %>
+        </td>
         <td><%= offer.title %></td>
-        <td><%= offer.description %></td>
         <td><%= offer.price %></td>
+        <td><%= offer.description %></td>
         <td><%= link_to 'Show', offer %></td>
         <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
         <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

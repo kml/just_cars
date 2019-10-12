@@ -17,13 +17,22 @@
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
+    <%= form.label :price %>
+    <%= form.text_field :price %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+    <% if offer.photo.attached? %>
+      <%= image_tag offer.photo.variant(resize_to_limit: [200, 200]) %>
+    <% end %>
+
+    <%= form.label :photo %>
+    <%= form.file_field :photo, accept:'image/*' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.rich_text_area :description %>
   </div>
 
   <div class="actions">

@@ -6,13 +6,17 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @offer.description %>
-</p>
-
-<p>
   <strong>Price:</strong>
   <%= @offer.price %>
+</p>
+
+<% if @offer.photo.attached? %>
+  <%= image_tag @offer.photo.variant(resize_to_limit: [400, 400]) %>
+<% end %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @offer.description %>
 </p>
 
 <%= link_to 'Edit', edit_offer_path(@offer) %> |

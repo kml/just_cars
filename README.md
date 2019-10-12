@@ -7,7 +7,15 @@ Things you may want to cover:
 
 * Ruby version
 
+```
+cat .ruby-version
+```
+
 * System dependencies
+
+```
+brew install imagemagick
+```
 
 * Configuration
 
