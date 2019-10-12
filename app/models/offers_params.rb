@@ -1,5 +1,6 @@
 class OffersParams
   include Virtus.model
+  include ActiveModel::Model
   include ActiveModel::Validations
 
   attribute :id, Integer
@@ -15,7 +16,7 @@ class OffersParams
   validates :title, presence: true, allow_nil: true
 
   validate do
-    if price_lte && price_gte && price_lte < price_gte
+    if price_lte.is_a?(BigDecimal) && price_gte.is_a?(BigDecimal) && price_lte < price_gte
       errors.add(:price_lte, :invalid)
     end
   end

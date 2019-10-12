@@ -4,6 +4,8 @@
   <%= link_to 'New Offer', new_offer_path %>
 <% end %>
 
+<%= render 'search_form', offer_params: @offer_params %>
+
 <table>
   <thead>
     <tr>

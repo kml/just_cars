@@ -4,14 +4,18 @@ class OffersController < ApplicationController
 
   # GET /offers
   def index
-    @offer_params = OffersParams.new(params.permit(OffersParams.attributes_names + [:format]))
+    @offer_params = OffersParams.new(search_params.slice(*OffersParams.attributes_names))
 
     respond_to do |format|
       format.html do
-        if @offer_params.invalid?
-          @offers = Offer.all.page(params[:page] || 1)
-        else
+        OffersParams.attributes_names.each do |name|
+          @offer_params[name] = nil if @offer_params[name] == ""
+        end
+
+        if @offer_params.valid?
           @offers = OffersSearcher.new(@offer_params).call
+        else
+          @offers = Kaminari.paginate_array([]).page(1)
         end
 
         render :index
@@ -75,5 +79,9 @@ class OffersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def offer_params
       params.require(:offer).permit(:title, :description, :price, :photo)
+    end
+
+    def search_params
+      params.permit(OffersParams.attributes_names)
     end
 end
