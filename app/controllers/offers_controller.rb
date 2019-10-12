@@ -3,6 +3,7 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   # GET /offers
+  # GET /offers.json
   def index
     @offer_params = OffersParams.new(search_params.slice(*OffersParams.attributes_names))
 
@@ -56,11 +57,16 @@ class OffersController < ApplicationController
   end
 
   # PATCH/PUT /offers/1
+  # PATCH/PUT /offers/1.json
   def update
-    if @offer.update(offer_params)
-      redirect_to @offer, notice: 'Offer was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @offer.update(offer_params)
+        format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }
+        format.json { render json: @offer, status: :ok, serializer: OfferSerializer }
+      else
+        format.html { render :edit }
+        format.json { render json: @offer.errors, status: :unprocessable_entity }
+      end
     end
   end
 
