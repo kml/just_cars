@@ -10,7 +10,9 @@
   </head>
 
   <body>
-    <% unless user_signed_in? %>
+    <% if user_signed_in? %>
+      <div>Hello, <%= current_user.email %>!</div>
+    <% else %>
       <%= link_to "Sign in", new_user_session_path %>
     <% end %>
 
