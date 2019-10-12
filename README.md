@@ -1,7 +1,4 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# JustCars
 
 Things you may want to cover:
 
@@ -19,14 +16,10 @@ brew install imagemagick
 
 * Configuration
 
-* Database creation
+```
+bundle install
+rails db:reset db:seed
+rails test
+rails server
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

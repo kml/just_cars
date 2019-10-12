@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+print "Seeding db..."
+
 100.times do
   now = Time.now
 
@@ -17,3 +19,5 @@
 
   offer.photo.attach(io: Rails.root.join("db", "seeds", "photo_1000x1000.png").open , filename: 'photo.png')
 end
+
+puts "OK"
