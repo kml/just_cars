@@ -21,6 +21,7 @@ gem 'turbolinks', '~> 5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails'
 gem 'devise'
+gem 'kaminari'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

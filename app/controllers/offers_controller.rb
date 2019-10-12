@@ -4,7 +4,7 @@ class OffersController < ApplicationController
 
   # GET /offers
   def index
-    @offers = Offer.all
+    @offers = Offer.all.page(params[:page] || 1)
   end
 
   # GET /offers/1

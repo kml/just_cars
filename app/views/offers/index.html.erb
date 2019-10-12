@@ -1,5 +1,9 @@
 <h1>Offers</h1>
 
+<% if user_signed_in? %>
+  <%= link_to 'New Offer', new_offer_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -33,6 +37,5 @@
   </tbody>
 </table>
 
-<br>
+<%= paginate @offers %>
 
-<%= link_to 'New Offer', new_offer_path %>
