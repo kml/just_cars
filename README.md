@@ -1,25 +1,27 @@
 # JustCars
 
-Things you may want to cover:
-
-* Ruby version
+## Setup
 
 ```
-cat .ruby-version
+docker-compose build
+docker-compose run --rm app bin/setup
 ```
 
-* System dependencies
+## Running tests
 
 ```
-brew install imagemagick
+docker-compose run --rm app bin/rails test
 ```
 
-* Configuration
+## Running development server
 
 ```
-bundle install
-rails db:reset db:seed
-rails test
-rails server
+docker-compose run --rm --service-ports app
+```
+
+## Running bash console
+
+```
+docker-compose run --rm app /bin/bash
 ```
 
