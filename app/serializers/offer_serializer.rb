@@ -1,4 +1,4 @@
-class OfferSerializer < ActiveModel::Serializer
+class OfferSerializer < ApplicationSerializer
   attribute :id
   attribute :title
   attribute :price
@@ -15,15 +15,5 @@ class OfferSerializer < ActiveModel::Serializer
     {
       path: rails_blob_path(object.photo)
     }
-  end
-
-  private
-
-  def h
-    Rails.application.routes.url_helpers
-  end
-
-  def rails_blob_path(blob)
-    h.rails_blob_path(blob, only_path: true)
   end
 end
